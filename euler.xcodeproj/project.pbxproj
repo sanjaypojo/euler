@@ -13,6 +13,8 @@
 		E95AC80D1993CE8B00072096 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E95AC80C1993CE8B00072096 /* Images.xcassets */; };
 		E95AC8101993CE8B00072096 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E95AC80E1993CE8B00072096 /* Main.storyboard */; };
 		E95AC81C1993CE8B00072096 /* eulerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95AC81B1993CE8B00072096 /* eulerTests.swift */; };
+		E9F40AF619941A76002911D0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9F40AF519941A76002911D0 /* QuartzCore.framework */; };
+		E9F40AF819941E76002911D0 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F40AF719941E76002911D0 /* GraphView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,8 @@
 		E95AC8151993CE8B00072096 /* eulerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = eulerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E95AC81A1993CE8B00072096 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E95AC81B1993CE8B00072096 /* eulerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = eulerTests.swift; sourceTree = "<group>"; };
+		E9F40AF519941A76002911D0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		E9F40AF719941E76002911D0 /* GraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9F40AF619941A76002911D0 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +64,7 @@
 		E95AC7F81993CE8B00072096 = {
 			isa = PBXGroup;
 			children = (
+				E9F40AF519941A76002911D0 /* QuartzCore.framework */,
 				E95AC8031993CE8B00072096 /* euler */,
 				E95AC8181993CE8B00072096 /* eulerTests */,
 				E95AC8021993CE8B00072096 /* Products */,
@@ -77,6 +83,7 @@
 		E95AC8031993CE8B00072096 /* euler */ = {
 			isa = PBXGroup;
 			children = (
+				E9F40AF719941E76002911D0 /* GraphView.swift */,
 				E95AC8081993CE8B00072096 /* ViewController.swift */,
 				E95AC80A1993CE8B00072096 /* AppDelegate.swift */,
 				E95AC80C1993CE8B00072096 /* Images.xcassets */,
@@ -214,6 +221,7 @@
 				E95AC80B1993CE8B00072096 /* AppDelegate.swift in Sources */,
 				E95AC8091993CE8B00072096 /* ViewController.swift in Sources */,
 				E95AC8071993CE8B00072096 /* main.swift in Sources */,
+				E9F40AF819941E76002911D0 /* GraphView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,6 +409,7 @@
 				E95AC8211993CE8B00072096 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E95AC8221993CE8B00072096 /* Build configuration list for PBXNativeTarget "eulerTests" */ = {
 			isa = XCConfigurationList;
@@ -409,6 +418,7 @@
 				E95AC8241993CE8B00072096 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -9,12 +9,15 @@
 import Cocoa
 
 class ViewController: NSViewController {
-                            
+    
+    @IBOutlet var limit: NSTextField!
+    @IBOutlet var computeGraph: NSButton!
+    @IBOutlet var graphArea: GraphView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
-                                    
+        
     }
 
     override var representedObject: AnyObject? {
@@ -24,6 +27,9 @@ class ViewController: NSViewController {
                                     
     }
 
-
+    @IBAction func plotGraph(sender: AnyObject) {
+        println("Yo")
+        graphArea.drawBarGraph([1:4, 2:2, 3:1])
+    }
 }
 
