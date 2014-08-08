@@ -29,7 +29,13 @@ class ViewController: NSViewController {
 
     @IBAction func plotGraph(sender: AnyObject) {
         println("Yo")
-        graphArea.drawBarGraph([1:4, 2:2, 3:1])
+        var plotData = [Float:Float]()
+        if limit.integerValue > 1 {
+            for i in 1...limit.integerValue {
+                plotData[Float(i)] = Float(i*i)
+            }
+            graphArea.drawBarGraph(plotData)
+        }
     }
 }
 

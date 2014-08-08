@@ -29,25 +29,42 @@ class GraphView: NSView {
     }
     
     func drawBarGraph(xyData: [Float: Float]) {
-        println(xyData)
+        func normalizeData(xyData:[Float:Float]) -> [Float:Float] {
+            var xyNormalized = [Float:Float]()
+            var xBig:Float = 0.0
+            var yBig:Float = 0.0
+            for (x, y) in xyData {
+                if y > yBig {
+                    yBig = y
+                }
+                if x > xBig {
+                    xBig = x
+                }
+            }
+            println(xBig)
+            println(yBig)
+            for (x, y) in xyData {
+                xyNormalized[x/xBig] = y / yBig
+            }
+            return xyNormalized
+        }
+        var xyNormalized = normalizeData(xyData)
+        println(xyNormalized)
         let context:CGContextRef = NSGraphicsContext.currentContext().CGContext
-        let gap = 5
-        let fat = 15
         var graphX:CGFloat = 0
         var graphY:CGFloat = 0
-        CGContextSetLineWidth(context, 0.8)
-        CGContextMoveToPoint(context, 5, 0)
-        CGContextAddLineToPoint(context, 5, 300)
-//        CGContextSetCMYKStrokeColor(context, 20, 20, 20, 20, 0.5)
-//        for (x, y) in xyData {
-//            println(y)
-//            graphX = 10*CGFloat(x)
-//            graphY = 50*CGFloat(y)
-//            CGContextMoveToPoint(context, graphX, 0)
-//            CGContextAddLineToPoint(context, graphX, graphY)
-//        }
-        CGContextStrokePath(context)
-        self.setNeedsDisplayInRect(NSRect())
+        self.lockFocus()
+        CGContextSetLineWidth(context, 3)
+        for (x, y) in xyNormalized {
+            println(y)
+            graphX = 300*CGFloat(x)
+            graphY = 150*CGFloat(y)
+            CGContextSetStrokeColorWithColor(context, CGColorCreateGenericRGB(0, CGFloat(y)/6, 0.2, 1))
+            CGContextMoveToPoint(context, graphX, 0)
+            CGContextAddLineToPoint(context, graphX, graphY)
+            CGContextStrokePath(context)
+        }
+        self.unlockFocus()
     }
     
 }
