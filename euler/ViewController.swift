@@ -38,6 +38,11 @@ class ViewController: NSViewController {
         var bucket = 1.0
         let bucketSize = Float(start + end)/50.0
         var limit:Double = 0
+        
+        for i in 1...50 {
+            print(".")
+        }
+        println()
 
         if (start + 100) < end {
             var startTime = NSDate()
@@ -46,7 +51,7 @@ class ViewController: NSViewController {
             startTime = NSDate()
             for var i=3; i < end; i+=2 {
                 flag = true
-                limit = sqrt(Double(i))
+                limit = sqrt(Double(i)) + 1
                 for factor in primeArray {
                     if factor > Int(limit + 1) {
                         break
@@ -60,10 +65,12 @@ class ViewController: NSViewController {
                     count++
                     primeArray.append(i)
                 }
+
                 if Float(i)/(Float(bucket)*bucketSize) > 1.0 {
                     plotData[Float(bucket)] = Float(count)
                     bucket++
                     count = 0
+                    print(".")
                 }
             }
             var duration = -startTime.timeIntervalSinceNow
