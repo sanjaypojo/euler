@@ -9,9 +9,12 @@
 import Cocoa
 
 class GraphView: NSView {
-    
     override func drawRect(dirtyRect: NSRect) {
+        self.layer?.backgroundColor = CGColorCreateGenericRGB(1, 1, 1, 0.2)
         let context:CGContextRef = NSGraphicsContext.currentContext().CGContext
+        CGContextClearRect(context, dirtyRect)
+        CGContextSetRGBFillColor(context, 1, 1, 1, 1)
+        CGContextFillRect(context, dirtyRect)
         CGContextSetLineWidth(context, 0.2)
         var graphGap:CGFloat = 0
         let lines = 50
@@ -25,10 +28,14 @@ class GraphView: NSView {
         CGContextStrokePath(context)
         CGContextSetLineWidth(context, 1)
         CGContextMoveToPoint(context, 9, 5)
-        CGContextAddLineToPoint(context, 9, dirtyRect.height + 5)
+        CGContextAddLineToPoint(context, 9, dirtyRect.height)
         CGContextMoveToPoint(context, 5, 9)
-        CGContextAddLineToPoint(context, dirtyRect.width + 5, 9)
+        CGContextAddLineToPoint(context, dirtyRect.width, 9)
         CGContextStrokePath(context)
+    }
+    
+    func drawLoading() {
+        
     }
     
     func drawBarGraph(xyData: [Float: Float]) {
@@ -44,22 +51,20 @@ class GraphView: NSView {
                     xBig = x
                 }
             }
-            println(xBig)
-            println(yBig)
             for (x, y) in xyData {
                 xyNormalized[x/xBig] = y / yBig
             }
             return xyNormalized
         }
         var xyNormalized = normalizeData(xyData)
-        println(xyNormalized)
         var graphX:CGFloat = 0
         var graphY:CGFloat = 0
         self.lockFocus()
         let context:CGContextRef = NSGraphicsContext.currentContext().CGContext
+        var dirtyRect = self.bounds
+        self.drawRect(dirtyRect)
         CGContextSetLineWidth(context, 3)
         for (x, y) in xyNormalized {
-            println(y)
             graphX = 300*CGFloat(x) + 10
             graphY = 150*CGFloat(y) + 10
             CGContextSetStrokeColorWithColor(context, CGColorCreateGenericRGB(0, CGFloat(y)/6, 0.2, 1))
