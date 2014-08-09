@@ -9,22 +9,25 @@
 import Cocoa
 
 class GraphView: NSView {
-
+    
     override func drawRect(dirtyRect: NSRect) {
-        super.drawRect(dirtyRect)
-
-        // Drawing code here.
         let context:CGContextRef = NSGraphicsContext.currentContext().CGContext
-        CGContextSetLineWidth(context, 0.1)
-        var graphX:CGFloat = 0
-        for var i = 1; i <= 80; i++ {
-            graphX = 10*CGFloat(i)
-            CGContextMoveToPoint(context, graphX, 0)
-            CGContextAddLineToPoint(context, graphX, 300)
-            CGContextMoveToPoint(context, 0, graphX)
-            CGContextAddLineToPoint(context, 400, graphX)
-            
+        CGContextSetLineWidth(context, 0.2)
+        var graphGap:CGFloat = 0
+        let lines = 50
+        for var i = 1; i <= lines; i++ {
+            graphGap = dirtyRect.width * CGFloat(i)/CGFloat(lines)
+            CGContextMoveToPoint(context, graphGap, 10)
+            CGContextAddLineToPoint(context, graphGap, dirtyRect.height)
+            CGContextMoveToPoint(context, 10, graphGap)
+            CGContextAddLineToPoint(context, dirtyRect.width, graphGap)
         }
+        CGContextStrokePath(context)
+        CGContextSetLineWidth(context, 1)
+        CGContextMoveToPoint(context, 9, 5)
+        CGContextAddLineToPoint(context, 9, dirtyRect.height + 5)
+        CGContextMoveToPoint(context, 5, 9)
+        CGContextAddLineToPoint(context, dirtyRect.width + 5, 9)
         CGContextStrokePath(context)
     }
     
@@ -50,17 +53,17 @@ class GraphView: NSView {
         }
         var xyNormalized = normalizeData(xyData)
         println(xyNormalized)
-        let context:CGContextRef = NSGraphicsContext.currentContext().CGContext
         var graphX:CGFloat = 0
         var graphY:CGFloat = 0
         self.lockFocus()
+        let context:CGContextRef = NSGraphicsContext.currentContext().CGContext
         CGContextSetLineWidth(context, 3)
         for (x, y) in xyNormalized {
             println(y)
-            graphX = 300*CGFloat(x)
-            graphY = 150*CGFloat(y)
+            graphX = 300*CGFloat(x) + 10
+            graphY = 150*CGFloat(y) + 10
             CGContextSetStrokeColorWithColor(context, CGColorCreateGenericRGB(0, CGFloat(y)/6, 0.2, 1))
-            CGContextMoveToPoint(context, graphX, 0)
+            CGContextMoveToPoint(context, graphX, 10)
             CGContextAddLineToPoint(context, graphX, graphY)
             CGContextStrokePath(context)
         }
