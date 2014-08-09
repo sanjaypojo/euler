@@ -9,10 +9,11 @@
 import Cocoa
 
 class ViewController: NSViewController {
-    
-    @IBOutlet var limit: NSTextField!
+
     @IBOutlet var computeGraph: NSButton!
     @IBOutlet var graphArea: GraphView!
+    @IBOutlet var primesFrom: NSTextField!
+    @IBOutlet var primesUpto: NSTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,13 +29,87 @@ class ViewController: NSViewController {
     }
 
     @IBAction func plotGraph(sender: AnyObject) {
-        println("Yo")
         var plotData = [Float:Float]()
-        if limit.integerValue > 1 {
-            for i in 1...limit.integerValue {
-                plotData[Float(i)] = Float(i*i)
+        var plotData2 = [Float:Float]()
+        let start = primesFrom.integerValue
+        let end = primesUpto.integerValue
+        var primeArray = [2]
+        var primeArray2 = [2]
+        var flag = false
+        var count = 0
+        var bucket = 1.0
+        let bucketSize = Float(start + end)/50.0
+        var limit:Double = 0
+
+        if (start + 100) < end {
+            var startTime = NSDate()
+            for var i=3; i < end; i+=2 {
+                flag = true
+                for factor in primeArray {
+                    if i%factor == 0 {
+                        flag = false
+                        break
+                    }
+                }
+                if flag == true {
+                    count++
+                    primeArray.append(i)
+                }
+                if Float(i)/(Float(bucket)*bucketSize) > 1.0 {
+                    plotData[Float(bucket)] = Float(count)
+                    bucket++
+                    count = 0
+                }
+            }
+            var duration = -startTime.timeIntervalSinceNow
+            println("Time taken: \(round(duration*100)/100) seconds")
+            
+            var count = 0
+            var bucket = 1.0
+            startTime = NSDate()
+            for var i=3; i < end; i+=2 {
+                flag = true
+                limit = sqrt(Double(i))
+                for factor in primeArray2 {
+                    if factor > Int(limit + 1) {
+                        break
+                    }
+                    if i%factor == 0 {
+                        flag = false
+                        break
+                    }
+                }
+                if flag == true {
+                    count++
+                    primeArray2.append(i)
+                }
+                if Float(i)/(Float(bucket)*bucketSize) > 1.0 {
+                    plotData2[Float(bucket)] = Float(count)
+                    bucket++
+                    count = 0
+                }
+            }
+            duration = -startTime.timeIntervalSinceNow
+            println("Time taken: \(round(duration*100)/100) seconds")
+            
+            if plotData == plotData2 {
+                var alert = NSAlert()
+                alert.messageText = "Spot on!"
+                alert.runModal()
+            }
+            else {
+                for (x,y) in plotData {
+                    if plotData[x] != plotData2[x] {
+                        println("\(x) -- \(plotData2[x]) vs \(plotData[x])")
+                    }
+                }
             }
             graphArea.drawBarGraph(plotData)
+        }
+        else {
+            var alert = NSAlert()
+            alert.messageText = "Woopsie"
+            alert.runModal()
         }
     }
 }
