@@ -30,11 +30,9 @@ class ViewController: NSViewController {
 
     @IBAction func plotGraph(sender: AnyObject) {
         var plotData = [Float:Float]()
-        var plotData2 = [Float:Float]()
         let start = primesFrom.integerValue
         let end = primesUpto.integerValue
         var primeArray = [2]
-        var primeArray2 = [2]
         var flag = false
         var count = 0
         var bucket = 1.0
@@ -43,9 +41,16 @@ class ViewController: NSViewController {
 
         if (start + 100) < end {
             var startTime = NSDate()
+            var count = 0
+            var bucket = 1.0
+            startTime = NSDate()
             for var i=3; i < end; i+=2 {
                 flag = true
+                limit = sqrt(Double(i))
                 for factor in primeArray {
+                    if factor > Int(limit + 1) {
+                        break
+                    }
                     if i%factor == 0 {
                         flag = false
                         break
@@ -63,47 +68,7 @@ class ViewController: NSViewController {
             }
             var duration = -startTime.timeIntervalSinceNow
             println("Time taken: \(round(duration*100)/100) seconds")
-            
-            var count = 0
-            var bucket = 1.0
-            startTime = NSDate()
-            for var i=3; i < end; i+=2 {
-                flag = true
-                limit = sqrt(Double(i))
-                for factor in primeArray2 {
-                    if factor > Int(limit + 1) {
-                        break
-                    }
-                    if i%factor == 0 {
-                        flag = false
-                        break
-                    }
-                }
-                if flag == true {
-                    count++
-                    primeArray2.append(i)
-                }
-                if Float(i)/(Float(bucket)*bucketSize) > 1.0 {
-                    plotData2[Float(bucket)] = Float(count)
-                    bucket++
-                    count = 0
-                }
-            }
-            duration = -startTime.timeIntervalSinceNow
-            println("Time taken: \(round(duration*100)/100) seconds")
-            
-            if plotData == plotData2 {
-                var alert = NSAlert()
-                alert.messageText = "Spot on!"
-                alert.runModal()
-            }
-            else {
-                for (x,y) in plotData {
-                    if plotData[x] != plotData2[x] {
-                        println("\(x) -- \(plotData2[x]) vs \(plotData[x])")
-                    }
-                }
-            }
+
             graphArea.drawBarGraph(plotData)
         }
         else {
