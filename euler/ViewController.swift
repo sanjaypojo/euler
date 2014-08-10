@@ -14,11 +14,14 @@ class ViewController: NSViewController {
     @IBOutlet var graphArea: GraphView!
     @IBOutlet var primesFrom: NSTextField!
     @IBOutlet var primesUpto: NSTextField!
+    @IBOutlet var progressBar: NSProgressIndicator!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+        progressBar.indeterminate = false
+        progressBar.minValue = 0.0
+        progressBar.maxValue = 100.0
     }
 
     override var representedObject: AnyObject? {
@@ -29,6 +32,7 @@ class ViewController: NSViewController {
     }
 
     @IBAction func plotGraph(sender: AnyObject) {
+        progressBar.doubleValue = 2.0
         var plotData = [Float:Float]()
         let start = primesFrom.integerValue
         let end = primesUpto.integerValue
@@ -39,11 +43,6 @@ class ViewController: NSViewController {
         let bucketSize = Float(start + end)/50.0
         var limit:Double = 0
         
-        for i in 1...50 {
-            print(".")
-        }
-        println()
-
         if (start + 100) < end {
             var startTime = NSDate()
             var count = 0
@@ -71,6 +70,8 @@ class ViewController: NSViewController {
                     bucket++
                     count = 0
                     print(".")
+                    progressBar.incrementBy(2.0)
+                    progressBar.displayIfNeeded()
                 }
             }
             var duration = -startTime.timeIntervalSinceNow

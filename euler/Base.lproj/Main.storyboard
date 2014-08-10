@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="14A299l" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
+        <deployment defaultVersion="101000" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6205"/>
     </dependencies>
     <scenes>
@@ -673,11 +674,11 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="euler" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="344"/>
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="382"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XxX-Ze-oKy">
-                                <rect key="frame" x="182" y="35" width="116" height="25"/>
+                                <rect key="frame" x="182" y="73" width="116" height="25"/>
                                 <buttonCell key="cell" type="roundTextured" title="Compute" bezelStyle="texturedRounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ciE-bi-Zcf">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -687,10 +688,10 @@
                                 </connections>
                             </button>
                             <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="37T-K5-MlK" customClass="GraphView" customModule="euler" customModuleProvider="target">
-                                <rect key="frame" x="62" y="83" width="356" height="161"/>
+                                <rect key="frame" x="62" y="121" width="356" height="161"/>
                             </customView>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hYX-LB-VdW">
-                                <rect key="frame" x="233" y="268" width="99" height="22"/>
+                                <rect key="frame" x="233" y="306" width="99" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="HlH-iu-FIB">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -698,7 +699,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bef-hn-uC3">
-                                <rect key="frame" x="146" y="271" width="81" height="17"/>
+                                <rect key="frame" x="146" y="309" width="81" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Primes Upto" id="gVk-Zc-2eC">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -706,7 +707,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O6l-vL-TmN">
-                                <rect key="frame" x="233" y="298" width="99" height="22"/>
+                                <rect key="frame" x="233" y="336" width="99" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="cAs-Th-HgJ">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -714,13 +715,16 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tq5-8Z-1Dp">
-                                <rect key="frame" x="146" y="301" width="83" height="17"/>
+                                <rect key="frame" x="146" y="339" width="83" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Primes From" id="1Oh-WE-ekh">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <progressIndicator fixedFrame="YES" maxValue="100" indeterminate="YES" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="IyJ-Py-PCm">
+                                <rect key="frame" x="62" y="19" width="356" height="20"/>
+                            </progressIndicator>
                         </subviews>
                     </view>
                     <connections>
@@ -728,11 +732,12 @@
                         <outlet property="graphArea" destination="37T-K5-MlK" id="NNz-yz-hzS"/>
                         <outlet property="primesFrom" destination="O6l-vL-TmN" id="9iP-2S-8HQ"/>
                         <outlet property="primesUpto" destination="hYX-LB-VdW" id="4Sy-xz-yea"/>
+                        <outlet property="progressBar" destination="IyJ-Py-PCm" id="mbF-gH-mmK"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="692"/>
+            <point key="canvasLocation" x="75" y="711"/>
         </scene>
     </scenes>
 </document>
