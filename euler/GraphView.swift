@@ -17,7 +17,7 @@ class GraphView: NSView {
         CGContextFillRect(context, dirtyRect)
         CGContextSetLineWidth(context, 0.2)
         var graphGap:CGFloat = 0
-        let lines = 50
+        let lines = 20
         for var i = 1; i <= lines; i++ {
             graphGap = dirtyRect.width * CGFloat(i)/CGFloat(lines)
             CGContextMoveToPoint(context, graphGap, 10)
@@ -67,7 +67,7 @@ class GraphView: NSView {
         for (x, y) in xyNormalized {
             graphX = 300*CGFloat(x) + 10
             graphY = 150*CGFloat(y) + 10
-            CGContextSetStrokeColorWithColor(context, CGColorCreateGenericRGB(0, CGFloat(y)/6, 0.2, 1))
+            CGContextSetStrokeColorWithColor(context, CGColorCreateGenericRGB(0, CGFloat(y)/1.75, CGFloat(x)/2, 1))
             CGContextMoveToPoint(context, graphX, 10)
             CGContextAddLineToPoint(context, graphX, graphY)
             CGContextStrokePath(context)
