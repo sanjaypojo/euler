@@ -677,16 +677,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="382"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XxX-Ze-oKy">
-                                <rect key="frame" x="182" y="73" width="116" height="25"/>
-                                <buttonCell key="cell" type="roundTextured" title="Compute" bezelStyle="texturedRounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ciE-bi-Zcf">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="plotGraph:" target="XfG-lQ-9wD" id="o5k-j3-MYk"/>
-                                </connections>
-                            </button>
                             <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="37T-K5-MlK" customClass="GraphView" customModule="euler" customModuleProvider="target">
                                 <rect key="frame" x="62" y="121" width="356" height="161"/>
                             </customView>
@@ -725,6 +715,16 @@
                             <progressIndicator fixedFrame="YES" maxValue="100" indeterminate="YES" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="IyJ-Py-PCm">
                                 <rect key="frame" x="62" y="19" width="356" height="20"/>
                             </progressIndicator>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XxX-Ze-oKy">
+                                <rect key="frame" x="182" y="73" width="116" height="32"/>
+                                <buttonCell key="cell" type="push" title="Compute" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ciE-bi-Zcf">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="plotGraph:" target="XfG-lQ-9wD" id="o5k-j3-MYk"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
